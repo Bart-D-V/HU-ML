@@ -11,12 +11,11 @@ class NeuronNetwork:
 
     def feed_forward(self, inputs: List[float]) -> List[List[float]]:
         """gives ouput of a network given a input"""
-        print(f"inputs {inputs}")
+
         output_and_input = [[1.0] + inputs]
         """input and output is used to store the output of a layer and uses it as a input for the next layer"""
         for layer in self.neuron_layers:
             """loop through all the layers"""
-            print(output_and_input)
             output_and_input.append([1.0] + list(n.get_output(output_and_input[-1][1:]) for n in layer.neurons))
 
         return output_and_input
@@ -46,7 +45,6 @@ class NeuronNetwork:
         for epoch in range(epochs):
             print(f"starting epoch {epoch}.\n",)
             for inp, tar in zip(inputs, targets):
-                print(f"inputs {inp}")
                 self.feed_forward(inp)
                 self.backpropagation(tar, learning_rate)
         print(f"finished training, for all the {epochs} epochs!")
