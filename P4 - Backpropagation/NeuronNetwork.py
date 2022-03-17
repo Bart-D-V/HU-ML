@@ -42,9 +42,11 @@ class NeuronNetwork:
 
     def train(self, inputs: List[List[float]], targets: List[List[float]], epochs: int, learning_rate: float):
         """"uses the feed_forward and backpropagation functions to train a neuralnetwork on a inputs and target dataset"""
+        print("started training")
+
         for epoch in range(epochs):
-            print(f"starting epoch {epoch}.\n",)
             for inp, tar in zip(inputs, targets):
                 self.feed_forward(inp)
                 self.backpropagation(tar, learning_rate)
+
         print(f"finished training, for all the {epochs} epochs!")
